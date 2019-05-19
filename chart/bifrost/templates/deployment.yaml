@@ -23,6 +23,9 @@ spec:
         - name: nginx-conf
           configMap:
             name: nginx-conf
+        - name: routes-json
+          configMap:
+            name: routes-json
         - name: nginx-ssl
           secret:
             secretName: nginx-ssl
@@ -47,6 +50,8 @@ spec:
               name: nginx-conf
             - mountPath: /usr/local/openresty/nginx/conf/ssl
               name: nginx-ssl
+            - mountPath: /usr/local/openresty/nginx/bifrost/
+              name: routes-json
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
