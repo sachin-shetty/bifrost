@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: nginx-conf
 data:
-  {{- (.Files.Glob "config/nginx_conf.d/nginx_pop.conf").AsConfig | nindent 2 }}
+  {{- (.Files.Glob "config/nginx/nginx_pop.conf").AsConfig | nindent 2 }}

@@ -36,8 +36,8 @@ Some minikube commands:
 3. minukube delete
 
 Local install with docker for debugging:
-1. docker run -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx_conf.d/nginx_pop.conf:/etc/nginx/conf.d/nginx_pop.conf  -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx_conf.d/ssl:/usr/local/openresty/nginx/conf/ssl  -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx_conf.d/routes.json:/usr/local/openresty/nginx/conf/routes.json -p 4443:4443 --name "bitfrost-devel" openresty/openresty:alpine-fat
+1. docker rm bitfrost-devel && docker run -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx/nginx_pop.conf:/etc/nginx/conf.d/nginx_pop.conf -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx/ssl:/usr/local/openresty/nginx/conf/ssl -v /home/egnyte/work/bifrost/git/bifrost/chart/bifrost/config/nginx/routes.json:/usr/local/openresty/nginx/bifrost/routes.json -p 4443:4443 --name "bitfrost-devel" openresty/openresty:alpine-fat
 2. docker exec -it bitfrost-devel "/bin/bash"
 3. cd /usr/local/openresty/nginx/logs/
-4. curl -k -H "Host: mockbin.org" https://localhost:4443
+4. curl -k -H "Host: www.mockbin.org" https://localhost:4443
    

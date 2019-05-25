@@ -18,9 +18,9 @@ service:
 
 bifrost:
   tls:
-    certificate: config/nginx_conf.d/ssl/localhost.crt
-    key: config/nginx_conf.d/ssl/localhost.key
-  routes_json: config/nginx_conf.d/routes.json
+    certificate: config/nginx/ssl/localhost.crt
+    key: config/nginx/ssl/localhost.key
+  routes_json: config/nginx/routes.json
 
 
 ingress:
