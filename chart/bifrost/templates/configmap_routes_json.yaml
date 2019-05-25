@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: routes-json
 data:
-  {{- (.Files.Glob "config/nginx_conf.d/routes.json").AsConfig | nindent 2 }}
+  {{ $routes_json := .Values.bifrost.routes_json }}
+  {{- (.Files.Glob $routes_json ).AsConfig | nindent 2 }}

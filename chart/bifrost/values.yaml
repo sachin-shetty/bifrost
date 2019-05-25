@@ -16,6 +16,13 @@ service:
   type: NodePort
   port: 4443
 
+bifrost:
+  tls:
+    certificate: config/nginx_conf.d/ssl/localhost.crt
+    key: config/nginx_conf.d/ssl/localhost.key
+  routes_json: config/nginx_conf.d/routes.json
+
+
 ingress:
   enabled: false
   annotations: {}
