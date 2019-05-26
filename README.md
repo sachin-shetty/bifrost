@@ -41,3 +41,20 @@ Local install with docker for debugging:
 3. cd /usr/local/openresty/nginx/logs/
 4. curl -k -H "Host: www.mockbin.org" https://localhost:4443
    
+# Deploying to Google k8s
+Setup:
+gcloud config set project free-apis-199609
+gcloud config set compute/zone us-central1-a
+gcloud auth activate-service-account --key-file 
+gcloud container clusters get-credentials bifrost-gke-dev --zone us-central1-a --project free-apis-199609
+kubectl create -f service_account.yaml
+helm init --service-account helm
+
+Deploy:
+helm upgrade --recreate-pods --install bifrost-gke-dev .
+kubectl get service
+curl -v -k -H "Host: www.google.com" https://35.222.223.192:4443
+
+Delete:
+helm delete --purge bifrost-gke-dev
+gcloud container clusters delete bifrost-gke-dev

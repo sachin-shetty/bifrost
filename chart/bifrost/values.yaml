@@ -13,7 +13,10 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: NodePort
+  #type: NodePort
+  #type: ClusterIP
+  #type: NodePort
+  type: LoadBalancer
   port: 4443
 
 bifrost:
