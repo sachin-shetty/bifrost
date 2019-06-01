@@ -8,3 +8,5 @@ Bifrost terminates connections from user in a region closest to the user and rou
 
 ![basic introduction](images/bifrost_intro.jpg)
 
+
+![Deployment](docs/deployment.md)
