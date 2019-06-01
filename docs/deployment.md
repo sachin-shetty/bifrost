@@ -14,3 +14,15 @@ Following things needs to be configured
 
 2. Configuring the routes: bifrost needs to know the end point to forward the connections, this is configured in a json file
       
+```json
+{
+    "myapp1-apac.mydomain.com": "myapp1.mydomain.com",
+    "myapp2.mydomain.com": "200.150.100.20"
+}
+```
+
+With the above json file, bifrost with forward all https connections with Host header myapp1.mydomain.com to 200.150.100.10 and so on. 
+
+3. Making sure your users are routed to the bifrost instead of actual remote application. This can be done with one of following
+     1. You can create an new A record in your DNS that points to the bifrost end point for example myapp1-apac.mydomain.com will resolve to the public ip of bifrost
+     2. You can use a global traffic routing DNS provider - More details <TBD> 
