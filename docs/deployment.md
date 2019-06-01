@@ -8,4 +8,9 @@ bifrost is an cloud-native openresty based application, deployed as a helm chart
 2. Identify the cloud provider where you should deploy bifrost. If your application is deployed in a public cloud like AWS, Google or Azure, you should use the same provider for bifrost as well. Using the same provider adds to the network acceration you are likely to get with bifrost due to optimized network routing between different regions of the same provider. If your application is not deployed in a public cloud, you should run some speed tests and see which cloud provider and region closest to your users get the best speeds to your application and pick one based on the tests. 
 
 ### Configure and Deploy bifrost
+
+Following things needs to be configured
+1. SSL Certificates: Since users https connections terminate at bifrost, bifrost should present a certificate similar to your application for your users to trust it. It does not have to be the same key pair as your end application, but the server name and CA should be acceptable to your users.
+
+2. Configuring the routes: bifrost needs to know the end point to forward the connections, this is configured in a json file
       
