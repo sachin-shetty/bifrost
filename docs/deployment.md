@@ -29,6 +29,7 @@ With the above configuration, bifrost with forward all https connections with Ho
 
 
 4. Provision a public ip in your public cloud
+   gcloud compute addresses create bifrost-lb-ip --region asia-south1 --project free-apis-199609
 
 5. git clone https://github.com/sachin-shetty/bifrost.git
 

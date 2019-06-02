@@ -14,6 +14,7 @@ spec:
       targetPort: https
       protocol: TCP
       name: https
+  loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   selector:
     app.kubernetes.io/name: {{ include "bifrost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

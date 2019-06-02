@@ -17,7 +17,8 @@ service:
   #type: ClusterIP
   #type: NodePort
   type: LoadBalancer
-  port: 4443
+  port: 443
+  loadBalancerIP: 35.200.156.113 # needs to be created
 
 bifrost:
   tls:

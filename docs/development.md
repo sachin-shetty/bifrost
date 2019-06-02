@@ -42,11 +42,13 @@ Setup:
 
 gcloud config set project free-apis-199609
 
-gcloud config set compute/zone us-central1-a
+gcloud config set compute/zone asia-south1-a
 
 gcloud auth activate-service-account --key-file
 
-gcloud container clusters get-credentials bifrost-gke-dev --zone us-central1-a --project free-apis-199609
+gcloud compute addresses create bifrost-lb-ip --region asia-south1 --project free-apis-199609
+
+gcloud container clusters get-credentials bifrost-gke-dev --zone asia-south1-a --project free-apis-199609
 
 kubectl create -f service_account.yaml
 
@@ -65,5 +67,6 @@ Delete:
 
 helm delete --purge bifrost-gke-dev
 
-gcloud container clusters delete bifrost-gke-dev
+gcloud container clusters delete bifrost-gke-dev --region asia-south1-a --project free-apis-199609
 
+gcloud compute addresses delete bifrost-lb-ip --region asia-south1 --project free-apis-199609
