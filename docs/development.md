@@ -48,7 +48,10 @@ gcloud auth activate-service-account --key-file
 
 gcloud compute addresses create bifrost-lb-ip --region asia-south1 --project free-apis-199609
 
+gcloud compute addresses describe bifrost-lb-ip --region asia-south1
+
 gcloud container clusters get-credentials bifrost-gke-dev --zone asia-south1-a --project free-apis-199609
+
 
 kubectl create -f service_account.yaml
 
@@ -57,7 +60,7 @@ helm init --service-account helm
 
 Deploy:
 
-helm upgrade --recreate-pods --install bifrost-gke-dev .
+helm upgrade --recreate-pods --install --set service.loadBalancerIP=<IP OF bifrost-lb-ip>  bifrost-gke-dev .
 
 kubectl get service
 
