@@ -22,6 +22,7 @@ service:
 
 bifrost:
   tls:
+    enabled: false
     certificate: config/nginx/ssl/localhost.crt
     key: config/nginx/ssl/localhost.key
   routes_json: config/nginx/routes.json

@@ -58,9 +58,13 @@
     }
 
     server {
+        {{ if .Values.bifrost.tls.enabled }}
         listen *:4443 ssl;
         ssl_certificate ssl/localhost.crt;
         ssl_certificate_key ssl/localhost.key;
+        {{ else }}
+        listen *:4443;
+        {{ end }}
 
         location / {
             proxy_http_version 1.1;
