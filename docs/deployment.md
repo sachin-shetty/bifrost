@@ -48,3 +48,15 @@ To deploy bifrost with ingress
 2. Set Service.type = NodePort
 2. Setup you ingress to route traffic to bifrost
 
+### Multi-hop deployment
+
+Sometimes for better performance, you may need multiple hops of bifrost before your traffic hits your application server. Consider a case where your application is 
+deployed in some local datacenter in east coast and most of your users are in Singapore. One possible deployment option would be deploy a bifrost hop in Singapore which directly routed traffic to your application in east coast, but this may not produce best results. A multi-hop  approach would be better for such use cases
+
+1. Deploy a hop in US East Cloud. Configure routes to send traffic to your app
+2. Deploy a hop in Singapore. Configure routes to send traffic to US East Hop
+3. Point your users to Singapore hop
+
+User --> Singapore Bifrost Hop --> US East Bifrost Hop --> You App in Each coast DC
+
+This configuration routes 90% of traffic through better managed routes.
