@@ -36,3 +36,15 @@ With the above configuration, bifrost with forward all https connections with Ho
 6. create a values.xml by copying chart/bifrost/values.yaml and edit the values
 
 7. helm upgrade --install bifrost-gke-dev --values chart/bifrost/values.yaml .
+
+### Deploying using ingress
+
+bifrost can be deployed behing ingress. This has the following advantages
+1. SSL keys and processing can be managed by ingress
+2. Shared public ip between bifrost and other applications
+
+To deploy bifrost with ingress
+1. Set bifrost.tlsenabled: false
+2. Set Service.type = NodePort
+2. Setup you ingress to route traffic to bifrost
+

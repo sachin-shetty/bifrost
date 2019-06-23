@@ -22,24 +22,10 @@ service:
 
 bifrost:
   tls:
-    enabled: false
+    enabled: true
     certificate: config/nginx/ssl/localhost.crt
     key: config/nginx/ssl/localhost.key
   routes_json: config/nginx/routes.json
-
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
