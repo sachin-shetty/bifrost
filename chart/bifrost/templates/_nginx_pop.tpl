@@ -67,7 +67,7 @@
         {{ end }}
 
         # Send header
-        more_set_headers "X-Bifrost-Via: {{ .Release.Name }}";
+        add_header "X-Bifrost-Via" "{{ .Release.Name }}";
 
         location /speed-test-{{ .Release.Name }} {
             sendfile           on;
