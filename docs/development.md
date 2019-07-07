@@ -25,6 +25,7 @@ Launch bifrost
 2. Get the Url to the service
    - minikube service bifrost-dev --url
 3. curl url
+4. kubectl exec -it $(kubectl get pods -o=name | sed -e 's/.*\///') -- /bin/bash
 
 Some minikube commands:
 1. minikube dashboard
