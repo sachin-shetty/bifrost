@@ -33,6 +33,19 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                  - "/bin/sh"
+                  - "-c"
+                  - >
+                    mkdir /speed-test;
+                    cd /speed-test;
+                    dd if=/dev/zero of=1KB.dat   count=1 bs=1024;
+                    dd if=/dev/zero of=1MB.dat   count=1024 bs=1024;
+                    dd if=/dev/zero of=10MB.dat  count=10240 bs=1024;
+                    dd if=/dev/zero of=100MB.dat count=102400 bs=1024;
           ports:
             - name: https
               containerPort: 4443
