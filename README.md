@@ -14,3 +14,5 @@ Bifrost terminates connections from user in a region closest to the user and rou
 ![Deployment](docs/deployment.md)
 
 ![Development](docs/development.md)
+
+![Deployment Case Study](docs/deployment_casestudy.md)
