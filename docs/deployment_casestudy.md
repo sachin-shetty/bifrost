@@ -36,10 +36,10 @@ curl -v -k https://<bifrost-singapore-ip>/speed-test-bifrost-singapore/1GB.dat -
 ```
 curl -v -k -H "Host: us-east.test-bifrost.com"  https://<bifrost-singapore-ip>/speed-test-bifrost-useast/1GB.dat -o /dev/null
 ```
-   Notice how we send the requests to Singapore Bifrost pop, but set the host header and request uri for US east. This config ensures that the request is proxied to US East and you measure the end to end speed. The speed you get here is likely the speed you users in Singapore. will get if they were to access you app deployed in US East, using a bifrost app in Singapore.
+Notice how we send the requests to Singapore Bifrost pop, but set the host header and request uri for US east. This config ensures that the request is proxied to US East and you measure the end to end speed. The speed you get here is likely the speed you users in Singapore. will get if they were to access you app deployed in US East, using a bifrost app in Singapore.
 
 3. To compare speed in #2 with the actual speed of hitting US East directly, without bifrost in between, you can try the following test
 ```
 curl -v https://<bifrost-useast-ip>/speed-test-bifrost-useast/1GB.dat -o /dev/null
 ```
-   If #3 is better than #2, you are likely to benefit from bifrost deployment in Singapore. If not, you should find better providers or pop locations that would make #2 > #3.
+If #3 is better than #2, you are likely to benefit from bifrost deployment in Singapore. If not, you should find better providers or pop locations that would make #2 > #3.
