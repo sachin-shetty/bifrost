@@ -80,4 +80,5 @@ helm delete --purge bifrost-gke-dev
 
 Delete the cluster: **Careful if the cluster is shared**
 gcloud container clusters delete $CLUSTER_NAME --region $REGION --project $PROJECT_NAME
+
 gcloud compute addresses delete bifrost-lb-ip --region asia-south1 --project free-apis-199609
