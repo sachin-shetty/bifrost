@@ -1,6 +1,6 @@
 # Introduction
 
-bifrost is a cloud-native openresty based application, deployed as a helm chart in to kubernetes cluster. 
+bifrost is a cloud-native openresty based application, deployed as a helm chart on a kubernetes cluster. 
 
 ### Preparing to deploy
 1. Identify the region to deploy bifrost. bifrost should be deployed in a region closest to your users, for e.g. if your application is deployed in US West Coast and you have a lot of users in Singapore complaining about speed, you should deploy bifrost in APAC and in a sub-region closest to your users
@@ -12,7 +12,7 @@ bifrost is a cloud-native openresty based application, deployed as a helm chart 
 Following things needs to be configured
 1. SSL Certificates: Since user's https connections terminate at bifrost, bifrost should present a certificate similar to your application for your users to trust it. It does not have to be the same key pair as your end application, but the server name and CA should be acceptable to your users.
 
-If you do not want bifrost to manage certificates, you can deploy bifrost behing an ingress and manage the certificates in ingress
+If you do not want bifrost to manage certificates, you can deploy bifrost behind an ingress and manage the certificates in ingress
 
 2. Configuring the routes: bifrost needs to know the end point to forward the connections, this is configured in a json file
       
@@ -30,7 +30,6 @@ With the above configuration, bifrost with forward all https connections with Ho
      2. You can use a global traffic routing DNS provider - More details TBD
 
 4. Provision a public ip in your public cloud
-   gcloud compute addresses create bifrost-lb-ip --region asia-south1 --project free-apis-199609
 
 5. git clone https://github.com/sachin-shetty/bifrost.git
 
@@ -40,7 +39,7 @@ With the above configuration, bifrost with forward all https connections with Ho
 
 ### Deploying using ingress
 
-bifrost can be deployed behing ingress. This has the following advantages:
+bifrost can be deployed behind ingress. This has the following advantages:
 1. SSL keys and processing can be managed by ingress
 2. Shared public ip between bifrost and other applications
 
@@ -54,7 +53,7 @@ To deploy bifrost with ingress
 Sometimes for better performance, you may need multiple hops of bifrost before your traffic hits your application server. Consider a case where your application is 
 deployed in some local datacenter in east coast and most of your users are in Singapore. One possible deployment option would be deploy a bifrost hop in Singapore which directly routes traffic to your application in east coast, but this may not produce best results. A multi-hop  approach would be better for such use cases
 
-1. Deploy a hop in US East Cloud. Configure routes to send traffic to your app
+1. Deploy a hop in US East. Configure routes to send traffic to your app
 2. Deploy a hop in Singapore. Configure routes to send traffic to US East Hop
 3. Point the DNS A record to Singapore hop
 
