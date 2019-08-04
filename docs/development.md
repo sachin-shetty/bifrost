@@ -1,6 +1,6 @@
 # Development
 
-Local Install:
+## Local Install
 1. Install helm and minikube: https://continuous.lu/2017/04/28/minikube-and-helm-kubernetes-package-manager
 2. Install Virtualbox
 2. Start minikube
@@ -17,7 +17,7 @@ Install bifrost locally:
 3. Check current helm install
    - helm ls
 4. Delete installed helm package
-   - helm delete --purge bifrost-dev
+   - helm delete --purge bifrost-dev 
 
 Launch bifrost
 1. Fetch the kubenetes service name
