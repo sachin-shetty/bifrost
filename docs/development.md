@@ -40,16 +40,15 @@ Local install with docker for debugging:
 
 # Deploying to Google k8s
 
-Setup:
+Setup Variables:
 
 * PROJECT_NAME="Project Name"
 * REGION="Project Region"
+* ZONE="Project Zone"
+* $KEY_FILE="Service Account File"
+* $CLUSTER_NAME="Cluster Name"
 
-ZONE="Project Zone"
-
-$KEY_FILE="Service Account File"
-
-$CLUSTER_NAME="Cluster Name"
+Commands:
 
 gcloud config set project $PROJECT_NAME
 
@@ -62,7 +61,6 @@ gcloud compute addresses create bifrost-lb-ip --region $REGION --project $PROJEC
 gcloud compute addresses describe bifrost-lb-ip --region $REGION
 
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT
-
 
 kubectl create -f service_account.yaml
 
@@ -77,10 +75,9 @@ kubectl get service
 
 curl -v -k -H "Host: www.google.com" https://bifrost-lb-ip:4443
 
-Delete:
-
+Cleanup: 
 helm delete --purge bifrost-gke-dev
 
+Delete the cluster: **Careful if the cluster is shared**
 gcloud container clusters delete $CLUSTER_NAME --region $REGION --project $PROJECT_NAME
-
 gcloud compute addresses delete bifrost-lb-ip --region asia-south1 --project free-apis-199609
