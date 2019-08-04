@@ -1,3 +1,5 @@
+# Evaluate Bifrost
+
 In this document we discuss the process to evaluate if bifrost deployment will speed up your global access
 and figure our an optimal deployment topology.
 
