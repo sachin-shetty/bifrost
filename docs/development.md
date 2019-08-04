@@ -39,21 +39,29 @@ Local install with docker for debugging:
 4. curl -k -H "Host: www.mockbin.org" https://localhost:4443
 
 # Deploying to Google k8s
+
 Setup:
 
-PROJECT_NAME=<Your Project Name>
+* PROJECT_NAME="Project Name"
+* REGION="Project Region"
+
+ZONE="Project Zone"
+
+$KEY_FILE="Service Account File"
+
+$CLUSTER_NAME="Cluster Name"
 
 gcloud config set project $PROJECT_NAME
 
-gcloud config set compute/zone asia-south1-a
+gcloud config set compute/zone $ZONE
 
-gcloud auth activate-service-account --key-file
+gcloud auth activate-service-account --key-file $KEY_FILE
 
-gcloud compute addresses create bifrost-lb-ip --region asia-south1 --project free-apis-199609
+gcloud compute addresses create bifrost-lb-ip --region $REGION --project $PROJECT
 
-gcloud compute addresses describe bifrost-lb-ip --region asia-south1
+gcloud compute addresses describe bifrost-lb-ip --region $REGION
 
-gcloud container clusters get-credentials bifrost-gke-dev --zone asia-south1-a --project free-apis-199609
+gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT
 
 
 kubectl create -f service_account.yaml
@@ -63,16 +71,16 @@ helm init --service-account helm
 
 Deploy:
 
-helm upgrade --recreate-pods --install --set service.loadBalancerIP=<IP OF bifrost-lb-ip>  bifrost-gke-dev .
+helm upgrade --recreate-pods --install --set service.loadBalancerIP="IP OF bifrost-lb-ip"  bifrost-gke-dev .
 
 kubectl get service
 
-curl -v -k -H "Host: www.google.com" https://35.222.223.192:4443
+curl -v -k -H "Host: www.google.com" https://bifrost-lb-ip:4443
 
 Delete:
 
 helm delete --purge bifrost-gke-dev
 
-gcloud container clusters delete bifrost-gke-dev --region asia-south1-a --project free-apis-199609
+gcloud container clusters delete $CLUSTER_NAME --region $REGION --project $PROJECT_NAME
 
 gcloud compute addresses delete bifrost-lb-ip --region asia-south1 --project free-apis-199609
